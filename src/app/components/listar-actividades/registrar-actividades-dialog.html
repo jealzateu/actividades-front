@@ -1,0 +1,74 @@
+<div *ngIf="!actividad">
+  <h1 mat-dialog-title>Registrar actividad</h1>
+  <div mat-dialog-content>
+      <mat-form-field appearance="fill">
+          <mat-label>Estado</mat-label>
+          <mat-select [(ngModel)]="estado">
+              <mat-option *ngFor="let estado of estados" [value]="estado.valor">
+                {{estado.valor}}
+              </mat-option>
+            </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+          <mat-label>Fecha estimada</mat-label>
+          <input matInput type="datetime-local" [(ngModel)]="fecha">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+          <mat-label>Empleado asignado</mat-label>
+          <mat-select [(ngModel)]="empleadoAsignado">
+              <mat-option *ngFor="let empleado of empleados" [value]="empleado.id">
+                {{empleado.nombre}}
+              </mat-option>
+            </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+          <mat-label>Días de retraso</mat-label>
+          <input matInput type="number" [(ngModel)]="diasRetraso">
+      </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+      <button mat-button (click)="cancelar()">Cancelar</button>
+      <button mat-button (click)="registrarActividad()" cdkFocusInitial>Registrar</button>
+  </div>
+</div>
+
+<div *ngIf="actividad">
+  <h1 mat-dialog-title>Editar actividad</h1>
+
+  <div mat-dialog-content>
+      <mat-form-field appearance="fill">
+          <mat-label>Estado</mat-label>
+          <mat-select [(ngModel)]="actividad.estado">
+              <mat-option *ngFor="let estado of estados" [value]="estado.valor">
+              {{estado.valor}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+          <mat-label>Fecha estimada</mat-label>
+          <input matInput type="datetime-local" [(ngModel)]="actividad.fecha">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+          <mat-label>Empleado asignado</mat-label>
+          <mat-select [(ngModel)]="actividad.empleadoAsignado.id">
+              <mat-option *ngFor="let empleado of empleados" [value]="empleado.id">
+              {{empleado.nombre}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+          <mat-label>Días de retraso</mat-label>
+          <input matInput type="number" [(ngModel)]="actividad.diasRetraso">
+      </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancelar()">Cancelar</button>
+    <button mat-button (click)="editarActividad()" cdkFocusInitial>Editar</button>
+</div>
+</div>
